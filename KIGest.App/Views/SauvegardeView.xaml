@@ -1,0 +1,78 @@
+<Page x:Class="KIGest.App.Views.SauvegardeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="SauvegardeView"
+      Background="{DynamicResource Brush.Background}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Sauvegarde &amp; restauration" Style="{DynamicResource Text.Title}" FontSize="24" Margin="0,0,0,4"/>
+            <TextBlock Text="Copie complète de la base POINTAGE (.bak) et restauration — à faire avant toute opération sensible sur la pointeuse"
+                       Style="{DynamicResource Text.Label}" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="380"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Sauvegardes existantes -->
+            <Border Grid.Column="0" Style="{DynamicResource Style.Card}" Margin="0,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Sauvegardes disponibles" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <DataGrid x:Name="GrdSauvegardes" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="GrdSauvegardes_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Fichier" Binding="{Binding Nom}" Width="*"/>
+                            <DataGridTextColumn Header="Créée le" Binding="{Binding DateCreation, StringFormat=dd/MM/yyyy HH:mm}" Width="150"/>
+                            <DataGridTextColumn Header="Taille" Binding="{Binding TailleAffichee}" Width="110"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button x:Name="BtnActualiser" Content="Actualiser la liste" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnActualiser_Click"/>
+                        <Button x:Name="BtnSupprimerBak" Content="Supprimer le fichier" Height="32" Padding="16,0" Click="BtnSupprimerBak_Click" IsEnabled="False"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Actions -->
+            <StackPanel Grid.Column="1">
+                <Border Style="{DynamicResource Style.Card}" Margin="8,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Sauvegarder la base" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="Crée un fichier .bak complet de la base POINTAGE dans le dossier ci-dessous." Style="{DynamicResource Text.Label}" Margin="0,0,0,12" TextWrapping="Wrap"/>
+
+                        <TextBlock Text="Dossier de sauvegarde" Style="{DynamicResource Text.Label}" Margin="0,0,0,4"/>
+                        <Grid Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="TxtDossier" Height="32" VerticalContentAlignment="Center"/>
+                            <Button x:Name="BtnParcourir" Content="…" Width="36" Height="32" Grid.Column="1" Margin="6,0,0,0" Click="BtnParcourir_Click"/>
+                        </Grid>
+
+                        <Button x:Name="BtnSauvegarder" Content="Sauvegarder maintenant" Height="38" Padding="0" Style="{DynamicResource Style.ButtonBrand}" FontWeight="SemiBold" Click="BtnSauvegarder_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{DynamicResource Style.Card}" Margin="8,0,0,0" BorderBrush="{DynamicResource Brush.Status.Absent}" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="Restaurer une sauvegarde" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Foreground="{DynamicResource Brush.Status.Absent}" Margin="0,0,0,4"/>
+                        <TextBlock Text="Écrase la base actuelle avec le fichier .bak choisi. TOUTES les données présentes (pointages de la période non concernée, employés…) seront remplacées." Style="{DynamicResource Text.Label}" Margin="0,0,0,12" TextWrapping="Wrap"/>
+                        <Button x:Name="BtnRestaurer" Content="Restaurer…" Height="38" Padding="0" Click="BtnRestaurer_Click"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,72 @@
+<Page x:Class="KIGest.App.Views.WorkCodeView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WorkCodeView"
+      Background="{DynamicResource Brush.Background}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Work Codes" Style="{DynamicResource Text.Title}" FontSize="24" Margin="0,0,0,4"/>
+            <TextBlock Text="Motifs de pointage (heures supplémentaires, exceptions, congés…) — synchronisés vers la pointeuse" Style="{DynamicResource Text.Label}" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="360"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Liste -->
+            <Border Grid.Column="0" Style="{DynamicResource Style.Card}" Margin="0,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Work Codes en base" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <DataGrid x:Name="GrdWorkCodes" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="GrdWorkCodes_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Code" Binding="{Binding Code}" Width="110"/>
+                            <DataGridTextColumn Header="Libellé" Binding="{Binding Libelle}" Width="*"/>
+                            <DataGridCheckBoxColumn Header="Actif" Binding="{Binding Actif}" Width="70"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button x:Name="BtnNouveau" Content="Nouveau" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnNouveau_Click"/>
+                        <Button x:Name="BtnSupprimer" Content="Supprimer" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnSupprimer_Click" IsEnabled="False"/>
+                        <Button x:Name="BtnSynchroniser" Content="Synchroniser vers la pointeuse" Height="32" Padding="16,0" Click="BtnSynchroniser_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Formulaire -->
+            <Border Grid.Column="1" Style="{DynamicResource Style.Card}" Margin="8,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Fiche work code" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                    <TextBlock Text="Code" Style="{DynamicResource Text.Label}" Margin="0,0,0,4"/>
+                    <TextBox x:Name="TxtCode" Height="32" Margin="0,0,0,12"/>
+
+                    <TextBlock Text="Libellé" Style="{DynamicResource Text.Label}" Margin="0,0,0,4"/>
+                    <TextBox x:Name="TxtLibelle" Height="32" Margin="0,0,0,12"/>
+
+                    <CheckBox x:Name="ChkActif" Content="Actif" IsChecked="True" Margin="0,0,0,16"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="BtnEnregistrer" Content="Enregistrer" Height="36" Padding="16,0" Margin="0,0,8,0" Click="BtnEnregistrer_Click"/>
+                        <Button x:Name="BtnEffacer" Content="Effacer" Height="36" Padding="16,0" Click="BtnEffacer_Click"/>
+                    </StackPanel>
+
+                    <Border Background="{DynamicResource Brush.Muted}" BorderBrush="{DynamicResource Brush.Border}" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,16,0,0">
+                        <TextBlock Text="Les work codes sont envoyés à la pointeuse via SSR_SetWorkCodeExBatch." Style="{DynamicResource Text.Label}" TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

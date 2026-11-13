@@ -1,0 +1,146 @@
+<Page x:Class="KIGest.App.Views.HorairesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="HorairesView"
+      Background="{DynamicResource Brush.Background}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Horaires &amp; affectations" Style="{DynamicResource Text.Title}" Margin="0,0,0,16"/>
+
+        <TabControl x:Name="Tabs" Grid.Row="1" Background="Transparent" BorderThickness="0" Padding="2">
+
+            <!-- ===================== Onglet Horaires ===================== -->
+            <TabItem Header="Horaires">
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="420"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Liste -->
+                    <Border Style="{DynamicResource Style.Card}" Margin="0,0,8,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Horaires définis" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                            <DataGrid x:Name="GrdHoraires" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                                      SelectionChanged="GrdHoraires_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Libellé" Binding="{Binding Libelle}" Width="180"/>
+                                    <DataGridTextColumn Header="Début" Binding="{Binding HeureDebut, StringFormat=hh\\:mm}" Width="80"/>
+                                    <DataGridTextColumn Header="Fin" Binding="{Binding HeureFin, StringFormat=hh\\:mm}" Width="80"/>
+                                    <DataGridTextColumn Header="Pause" Binding="{Binding PauseAffiche}" Width="110"/>
+                                    <DataGridTextColumn Header="Tolérance" Binding="{Binding ToleranceRetardMin, StringFormat={}{0} min}" Width="110"/>
+                                    <DataGridCheckBoxColumn Header="Nuit" Binding="{Binding NuitOuiNon}" Width="70"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                                <Button x:Name="BtnHorairesNouveau" Content="Nouveau" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnHorairesNouveau_Click"/>
+                                <Button x:Name="BtnHorairesSupprimer" Content="Supprimer" Height="32" Padding="16,0" Click="BtnHorairesSupprimer_Click" IsEnabled="False"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Formulaire -->
+                    <Border Grid.Column="1" Style="{DynamicResource Style.Card}" Margin="8,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Fiche horaire" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Libellé" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtLibelle" Grid.Row="0" Grid.Column="1" Height="32" Margin="0,0,0,10"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Heure début" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtHeureDebut" Grid.Row="1" Grid.Column="1" Height="32" Margin="0,0,0,10" Text="08:00"/>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Heure fin" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtHeureFin" Grid.Row="2" Grid.Column="1" Height="32" Margin="0,0,0,10" Text="17:00"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Pause début" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtPauseDebut" Grid.Row="3" Grid.Column="1" Height="32" Margin="0,0,0,10" Text="12:00"/>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Pause fin" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtPauseFin" Grid.Row="4" Grid.Column="1" Height="32" Margin="0,0,0,10" Text="13:00"/>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Tolérance retard" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <TextBox x:Name="TxtTolerance" Grid.Row="5" Grid.Column="1" Height="32" Margin="0,0,0,10" Text="10"/>
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="Nuit" Style="{DynamicResource Text.Label}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="ChkNuit" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Button x:Name="BtnHorairesEnregistrer" Content="Enregistrer l'horaire" Height="36" Padding="0" Margin="0,8,0,0" Click="BtnHorairesEnregistrer_Click"/>
+                            <TextBlock x:Name="TxtStatut" Style="{DynamicResource Text.Label}" Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- ===================== Onglet Affectations ===================== -->
+            <TabItem Header="Affectations">
+                <Grid Margin="0,12,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <TextBlock Text="Filtrer par :" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <ComboBox x:Name="CboType" Width="180" Height="32" SelectionChanged="CboType_SelectionChanged"/>
+                        <TextBlock Text="Service" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="12,0,8,0"/>
+                        <ComboBox x:Name="CboService" Width="180" Height="32" DisplayMemberPath="Libelle" SelectionChanged="CboService_SelectionChanged"/>
+                        <TextBlock Text="Employé" Style="{DynamicResource Text.Label}" VerticalAlignment="Center" Margin="12,0,8,0"/>
+                        <ComboBox x:Name="CboEmploye" Width="200" Height="32" DisplayMemberPath="Affichage" SelectionChanged="CboEmploye_SelectionChanged"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="1" Style="{DynamicResource Style.Card}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Affectations enregistrées" Style="{DynamicResource Text.Body}" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                            <DataGrid x:Name="GrdAffectations" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                                      SelectionChanged="GrdAffectations_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding TypeAffiche}" Width="130"/>
+                                    <DataGridTextColumn Header="Affecté à" Binding="{Binding CibleAffiche}" Width="220"/>
+                                    <DataGridTextColumn Header="Horaire" Binding="{Binding HoraireLibelle}" Width="180"/>
+                                    <DataGridTextColumn Header="Début" Binding="{Binding DateDebut, StringFormat=dd/MM/yyyy}" Width="110"/>
+                                    <DataGridTextColumn Header="Fin" Binding="{Binding DateFinAffiche}" Width="110"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+                <Button x:Name="BtnAffectationModifier" Content="Modifier" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnAffectationModifier_Click" IsEnabled="False"/>
+                <Button Content="+ Par service" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnAjouterService_Click"/>
+                <Button Content="+ Par employé" Height="32" Padding="16,0" Margin="0,0,8,0" Click="BtnAjouterEmploye_Click"/>
+                <Button x:Name="BtnAffectationSupprimer" Content="Supprimer" Height="32" Padding="16,0" Click="BtnAffectationSupprimer_Click" IsEnabled="False"/>
+            </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

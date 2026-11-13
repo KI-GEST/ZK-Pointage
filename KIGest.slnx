@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="KIGest.App/KIGest.App.csproj" />
+  <Project Path="KIGest.Core/KIGest.Core.csproj" />
+  <Project Path="KIGest.Data/KIGest.Data.csproj" />
+  <Project Path="KIGest.Device/KIGest.Device.csproj" />
+</Solution>
