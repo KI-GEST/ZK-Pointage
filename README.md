@@ -3,7 +3,7 @@
 Application de bureau Windows de **gestion de présence / pointage** pour pointeuses **ZKTeco**.
 Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
-![Version](https://img.shields.io/badge/version-1.3.0-FF4055)
+![Version](https://img.shields.io/badge/version-1.4.0-FF4055)
 ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)
 ![Licence](https://img.shields.io/badge/license-Propriétaire-gray)
 
@@ -30,7 +30,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-Lancez **`KI-GEST PointageSetup_1.3.0.exe`** (droits administrateur requis). L'assistant :
+Lancez **`KI-GEST PointageSetup_1.4.0.exe`** (droits administrateur requis). L'assistant :
 
 1. **Méthode de connexion SQL Server**, au choix :
    - **Utilisateur Windows actuel** (authentification intégrée) — recommandé en local, aucun mot de passe à saisir ;
