@@ -1,5 +1,0 @@
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=_SERVEUR_;Database=POINTAGE;User Id=_USER_;Password=_MOT_DE_PASSE_;TrustServerCertificate=True;MultipleActiveResultSets=True;"
-  }
-}
