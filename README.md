@@ -3,7 +3,7 @@
 Application de bureau Windows de **gestion de présence / pointage** pour pointeuses **ZKTeco**.
 Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
-![Version](https://img.shields.io/badge/version-1.4.0-FF4055)
+![Version](https://img.shields.io/badge/version-1.6.0-FF4055)
 ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)
 ![Licence](https://img.shields.io/badge/license-Propriétaire-gray)
 
@@ -20,6 +20,8 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 - **Export paie** : heures supplémentaires 125 % / 150 % / 200 %
 - **Multi-pointeuses** : import/export employés, reboot, sync heure, effacement logs
 - **Tableau de bord** : derniers pointages temps réel, KPIs, détection des départs anticipés (« Parti tôt »)
+- **Pointeuses** : export/import de la configuration (JSON), bouton « Supprimer le journal », lecture du **numéro de série** et **image** de la pointeuse
+- **Stabilité** : thread STA dédié pour les appels COM (plus de blocage), timeouts et cooldown (5 timeouts → 2 min de pause), démarrage rapide (index SQL `PointagesBruts`)
 - **Gestion d'utilisateurs** (rôles Admin / Utilisateur), **sauvegarde / restauration** de la base
 
 ## Prérequis
@@ -30,7 +32,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-Lancez **`KI-GEST PointageSetup_1.4.0.exe`** (droits administrateur requis). L'assistant :
+Lancez **`KI-GEST PointageSetup_1.6.0.exe`** (droits administrateur requis). L'assistant :
 
 1. **Méthode de connexion SQL Server**, au choix :
    - **Utilisateur Windows actuel** (authentification intégrée) — recommandé en local, aucun mot de passe à saisir ;
