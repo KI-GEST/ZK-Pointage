@@ -31,17 +31,19 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 ## Prérequis
 
 - Windows 10 / 11 64 bits
-- SQL Server (Express ou Standard) — local ou réseau
+- SQL Server Express **ou** Standard — l'installateur peut provisionner SQL Server Express 2017 automatiquement, ou utiliser votre instance existante
 - Pointeuse ZKTeco (SDK `zkemkeeper.dll` 32 bits, enregistré automatiquement par l'installateur)
 
 ## Installation
 
-Téléchargez **`KI-GEST PointageSetup_1.6.0.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) (ou le fichier à la racine du dépôt) et lancez-le (droits administrateur requis). L'assistant :
+Téléchargez **`KI-GEST PointageSetup_1.7.0.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis). L'assistant :
 
-1. **Méthode de connexion SQL Server**, au choix :
-   - **Utilisateur Windows actuel** (authentification intégrée) — recommandé en local, aucun mot de passe à saisir ;
+1. **Instance SQL Server**, au choix :
+   - **Installer SQL Server Express 2017** — tout est automatique : instance `SQLEXPRESS`, base `POINTAGE`, zéro configuration ; l'instance est détectée si elle existe déjà ;
+   - **Utiliser une instance SQL Server existante** (Express ou complète, locale ou distante).
+2. **Méthode de connexion SQL Server**, au choix :
+   - **Utilisateur Windows actuel** (authentification intégrée) — recommandé en local, aucun mot de passe à saisir ; l'installateur provisionne aussi un login Windows pour l'utilisateur qui l'exécute ;
    - **Identifiants SQL** (utilisateur + mot de passe).
-2. **Serveur et base de données** : serveur (`localhost`, `.\SQLEXPRESS`, `DESKTOP-XXX\SQLEXPRESS`, `192.168.0.x`) et nom de la base (`POINTAGE`).
 3. **Création automatique de la base** si absente (droits SQL suffisants, ou compte administrateur Windows — repli automatique sur l'authentification intégrée).
 4. Écrit `KIGest.json` (connexion) à côté de l'exécutable, chiffrée DPAPI au premier démarrage — **aucun mot de passe en clair sur disque**.
 
@@ -71,6 +73,15 @@ Exemple :
   }
 }
 ```
+
+## Sécurité
+
+- **Mots de passe** : hachage PBKDF2-HMAC-SHA256 (100 000 itérations, sel aléatoire).
+- **Premier démarrage** : le mot de passe par défaut `admin` doit être changé **obligatoirement** avant tout autre écran — l'application ne laisse pas accéder le tableau de bord tant qu'il est en place.
+- **Verrouillage du compte** après 5 échecs de connexion (15 minutes, paramétrable), journalisé.
+- **Chaîne SQL & secrets SMTP** : chiffrés DPAPI (machine locale), jamais en clair sur disque après le premier démarrage.
+- **Sauvegardes** (`.bak`) : stockées dans un dossier protégé — lecture restreinte, écriture réservée au compte SQL Server.
+- **Traçabilité** : journal des connexions, échecs, changements de mot de passe et actions sensibles.
 
 ## Support
 
