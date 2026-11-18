@@ -36,7 +36,14 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-Téléchargez **`KI-GEST PointageSetup_1.7.5.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis). L'assistant :
+**Première installation (à partir de zéro) :** téléchargez **`KI-GEST PointageSetup_1.7.5.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis).
+
+**Toutes les versions suivantes (mises à jour depuis une installation existante) :** aucune manipulation nécessaire. L'application :
+- détecte automatiquement la présence d'une mise à jour (bouton « Mise à jour » — sidebar SYSTÈME) ;
+- télécharge un **petit delta (fichiers modifiés uniquement)**, beaucoup plus léger que le Setup ;
+- remplace les fichiers et redémarre toute seule.
+
+L'assistant de première installation :
 
 1. **Instance SQL Server**, au choix :
    - **Installer SQL Server Express 2017** — tout est automatique : instance `SQLEXPRESS`, base `POINTAGE`, zéro configuration ; l'instance est détectée si elle existe déjà ;
