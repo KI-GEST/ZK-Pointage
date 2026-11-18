@@ -27,6 +27,8 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 - **Pointeuses** : export/import de la configuration (JSON), bouton « Supprimer le journal », lecture du **numéro de série** et **image** de la pointeuse
 - **Stabilité** : thread STA dédié pour les appels COM (plus de blocage), timeouts et cooldown (5 timeouts → 2 min de pause), démarrage rapide (index SQL `PointagesBruts`)
 - **Gestion d'utilisateurs** (rôles Admin / Utilisateur), **sauvegarde / restauration** de la base
+- **Multi-sociétés** : un seul install pour plusieurs sociétés — sélecteur header en haut, page **Sociétés** (CRUD intégral), toutes les données filtrées par la société active
+- **Localization FR / EN** : interface bilingue (Paramètres > Général > Langue), satellite assemblies générés à la compilation
 
 ## Prérequis
 
