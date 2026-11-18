@@ -36,7 +36,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-Téléchargez **`KI-GEST PointageSetup_1.7.2.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis). L'assistant :
+Téléchargez **`KI-GEST PointageSetup_1.7.3.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis). L'assistant :
 
 1. **Instance SQL Server**, au choix :
    - **Installer SQL Server Express 2017** — tout est automatique : instance `SQLEXPRESS`, base `POINTAGE`, zéro configuration ; l'instance est détectée si elle existe déjà ;
@@ -51,6 +51,11 @@ Téléchargez **`KI-GEST PointageSetup_1.7.2.exe`** depuis la page [**Releases**
 Au premier démarrage, l'application crée automatiquement toutes les tables, les paramètres et le compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »).
 
 ## Compatibilité ZKTeco
+
+### Mises à jour
+
+- **Mise à jour assistée** : au démarrage, l'application vérifie GitHub et propose d'installer la nouvelle version en un clic (bouton « Mise à jour » — sidebar SYSTÈME).
+- **Service de mise à jour** : un service Windows « KI-GEST Pointage Updater » vérifie quotidiennement la disponibilité des mises à jour (sans rien télécharger) et journalise dans l'Observateur d'événements.
 
 Pointeuses ZKTeco fonctionnant avec le SDK `zkemkeeper.dll` (famille SpeedFace, iFace, TFT, Black&White) : **pointage par badge** (IC/RFID, pointage par carte) et **reconnaissance faciale** (modèles SpeedFace comme le ZMM510). Les pointages sont lus par l'appareil (temps réel, toutes les 3 s) et stockés dans SQL Server.
 
