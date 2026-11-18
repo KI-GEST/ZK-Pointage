@@ -36,7 +36,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-**Première installation (à partir de zéro) :** téléchargez **`KI-GEST PointageSetup_1.7.7.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis).
+**Première installation (à partir de zéro) :** téléchargez **`KI-GEST PointageSetup_1.7.6.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis).
 
 **Toutes les versions suivantes (mises à jour depuis une installation existante) :** aucune manipulation nécessaire. L'application :
 - détecte automatiquement la présence d'une mise à jour (bouton « Mise à jour » — sidebar SYSTÈME) ;
