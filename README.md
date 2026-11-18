@@ -61,6 +61,7 @@ Au premier démarrage, l'application crée automatiquement toutes les tables, le
 
 ### Mises à jour
 
+- **Updates delta only** : depuis la v1.7.6, la distribution publique ne publie plus que le `delta-<version>.zip`. La v1.7.6 (setup complet, multi-fichiers) reste la base — une seule installation nécessaire. Toutes les versions suivantes se mettent à jour automatiquement.
 - **Mise à jour assistée** : au démarrage, l'application vérifie GitHub et propose d'installer la nouvelle version en un clic (bouton « Mise à jour » — sidebar SYSTÈME).
 - **Service de mise à jour** : un service Windows « KI-GEST Pointage » vérifie quotidiennement la disponibilité des mises à jour (sans rien télécharger) et journalise dans l'Observateur d'événements.
 
@@ -93,6 +94,7 @@ Exemple :
 - **Premier démarrage** : le mot de passe par défaut `admin` doit être changé **obligatoirement** avant tout autre écran — l'application ne laisse pas accéder le tableau de bord tant qu'il est en place.
 - **Verrouillage du compte** après 5 échecs de connexion (15 minutes, paramétrable), journalisé.
 - **Chaîne SQL & secrets SMTP** : chiffrés DPAPI (machine locale), jamais en clair sur disque après le premier démarrage.
+- **CIN (données personnelles)** : chiffrées DPAPI au repos dans la base (colonne `Employes.CIN`), jamais affichées en clair — seul l'admin peut les voir.
 - **Sauvegardes** (`.bak`) : stockées dans un dossier protégé — lecture restreinte, écriture réservée au compte SQL Server.
 - **Traçabilité** : journal des connexions, échecs, changements de mot de passe et actions sensibles.
 
