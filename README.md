@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.8.0-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.8.1-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
@@ -23,11 +23,11 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 - **Rapports** : journalier et mensuel par employé et par service — exports **Excel** et **PDF**
 - **Export paie** : heures supplémentaires **125 % / 150 % / 200 %**
 - **Multi-pointeuses** : import/export employés, reboot, sync heure, effacement logs
-- **Tableau de bord** : derniers pointages temps réel, KPIs, détection des départs anticipés (« Parti tôt »)
-- **Pointeuses** : export/import de la configuration (JSON), bouton « Supprimer le journal », lecture du **numéro de série** et **image** de la pointeuse
+- **Tableau de bord** : derniers pointages temps réel, KPIs, détection des départs anticipés (« Parti tôt ») — avec **filtre société local** (KPI, derniers pointages et état des pointeuses) et colonne « Société » en vue consolidée
+- **Pointeuses** : export/import de la configuration (JSON), bouton « Supprimer le journal », lecture du **numéro de série** et **image** de la pointeuse ; **société de rattachement visible et modifiable** (liste, fiche, assistant de scan réseau), reprise dans l'export/import JSON
 - **Stabilité** : thread STA dédié pour les appels COM (plus de blocage), timeouts et cooldown (5 timeouts → 2 min de pause), démarrage rapide (index SQL `PointagesBruts`)
 - **Gestion d'utilisateurs** (rôles Admin / Utilisateur), **sauvegarde / restauration** de la base
-- **Multi-sociétés** : un seul install pour plusieurs sociétés — sélecteur header (vue **« Toutes les sociétés » par défaut**), page **Sociétés** (CRUD intégral), toutes les données filtrées par la société choisie ; la page **Horaires & affectations** dispose en plus de son propre filtre société (colonne « Société » en vue consolidée)
+- **Multi-sociétés** : un seul install pour plusieurs sociétés — sélecteur header (vue **« Toutes les sociétés » par défaut**), page **Sociétés** (CRUD intégral), toutes les données filtrées par la société choisie ; les pages **Horaires & affectations** et **Tableau de bord** disposent en plus de leur propre filtre société (colonne « Société » en vue consolidée) ; à la première installation, une société **« Ma Société »** est créée automatiquement
 - **Localization FR / EN** : interface bilingue (Paramètres > Général > Langue), satellite assemblies générés à la compilation
 
 ## Prérequis
@@ -57,7 +57,7 @@ L'assistant de première installation :
 4. Écrit `KIGest.json` (connexion) à côté de l'exécutable, chiffrée DPAPI au premier démarrage — **aucun mot de passe en clair sur disque**.
 5. En cas de problème de connexion après une mise à jour, utilisez « **Réparer la connexion KI-GEST** » (Menu Démarrer → KI-GEST Pointage) : crée le login Windows de l'opérateur (db_owner sur POINTAGE) et bascule la configuration en authentification Windows intégrée.
 
-Au premier démarrage, l'application crée automatiquement toutes les tables, les paramètres et le compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »).
+Au premier démarrage, l'application crée automatiquement toutes les tables, les paramètres, une société **« Ma Société »** (renommable depuis la page Sociétés) et le compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »).
 
 ## Compatibilité ZKTeco
 
