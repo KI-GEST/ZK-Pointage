@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.7.6-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.7.7-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
@@ -36,7 +36,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 ## Installation
 
-**Première installation (à partir de zéro) :** téléchargez **`KI-GEST PointageSetup_1.7.6.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis).
+**Première installation (à partir de zéro) :** téléchargez **`KI-GEST PointageSetup_1.7.7.exe`** depuis la page [**Releases**](https://github.com/KI-GEST/ZK-Pointage/releases) et lancez-le (droits administrateur requis).
 
 **Toutes les versions suivantes (mises à jour depuis une installation existante) :** aucune manipulation nécessaire. L'application :
 - détecte automatiquement la présence d'une mise à jour (bouton « Mise à jour » — sidebar SYSTÈME) ;
