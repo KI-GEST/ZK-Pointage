@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.7.8-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.7.9-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
@@ -27,7 +27,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 - **Pointeuses** : export/import de la configuration (JSON), bouton « Supprimer le journal », lecture du **numéro de série** et **image** de la pointeuse
 - **Stabilité** : thread STA dédié pour les appels COM (plus de blocage), timeouts et cooldown (5 timeouts → 2 min de pause), démarrage rapide (index SQL `PointagesBruts`)
 - **Gestion d'utilisateurs** (rôles Admin / Utilisateur), **sauvegarde / restauration** de la base
-- **Multi-sociétés** : un seul install pour plusieurs sociétés — sélecteur header en haut, page **Sociétés** (CRUD intégral), toutes les données filtrées par la société active
+- **Multi-sociétés** : un seul install pour plusieurs sociétés — sélecteur header en haut, page **Sociétés** (CRUD intégral), toutes les données filtrées par la société active, mode **« Toutes les sociétés »** pour une vue croisée globale
 - **Localization FR / EN** : interface bilingue (Paramètres > Général > Langue), satellite assemblies générés à la compilation
 
 ## Prérequis
