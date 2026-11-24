@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.8.5-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.8.6-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
@@ -57,7 +57,7 @@ L'assistant de première installation :
 4. Écrit `KIGest.json` (connexion) à côté de l'exécutable, chiffrée DPAPI au premier démarrage — **aucun mot de passe en clair sur disque**.
 5. En cas de problème de connexion après une mise à jour, utilisez « **Réparer la connexion KI-GEST** » (Menu Démarrer → KI-GEST Pointage) : crée le login Windows de l'opérateur (db_owner sur POINTAGE) et bascule la configuration en authentification Windows intégrée.
 
-Au premier démarrage, l'application crée automatiquement toutes les tables, les paramètres, une société **« Ma Société »** (renommable depuis la page Sociétés) et le compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »).
+Au premier démarrage, l'application applique ses **migrations EF Core** : création automatique des tables sur une base neuve, ou **inscription comme déjà appliquée de la migration initiale** sur une base existante (aucune recréation ni modification de schéma), puis insertion des paramètres, d'une société **« Ma Société »** (renommable depuis la page Sociétés) et du compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »). Les évolutions de schéma futures sont ainsi appliquées automatiquement au démarrage, sans script SQL manuel.
 
 ## Compatibilité ZKTeco
 
