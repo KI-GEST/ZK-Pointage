@@ -1,9 +1,9 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.8.9-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.9.0-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
-[![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
+[![SQL Server / Access](https://img.shields.io/badge/SQL%20Server%20%2F%20Access-A80000)](https://www.microsoft.com/sql-server)
 [![Platform](https://img.shields.io/badge/Windows-10%2F11-0078D6)](https://www.microsoft.com/windows)
 
 ## Logiciel de pointage pour pointeuses ZKTeco — time attendance software
@@ -33,7 +33,7 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 ## Prérequis
 
 - Windows 10 / 11 64 bits
-- SQL Server Express **ou** Standard — l'installateur peut provisionner SQL Server Express 2017 automatiquement, ou utiliser votre instance existante
+- **SQL Server** Express/Standard (l'installateur peut provisionner SQL Server Express 2017 automatiquement, ou utiliser votre instance existante) **ou fichier Access `.mdb` local** (aucun serveur à installer)
 - Pointeuse ZKTeco (SDK `zkemkeeper.dll` 32 bits, enregistré automatiquement par l'installateur)
 
 ## Installation
@@ -47,17 +47,18 @@ Application française, contexte tunisien. Édition **KI-GEST Pointage**.
 
 L'assistant de première installation :
 
-1. **Instance SQL Server**, au choix :
+1. **Stockage de la base**, au choix :
    - **Installer SQL Server Express 2017** — tout est automatique : instance `SQLEXPRESS`, base `POINTAGE`, zéro configuration ; l'instance est détectée si elle existe déjà ;
-   - **Utiliser une instance SQL Server existante** (Express ou complète, locale ou distante).
-2. **Méthode de connexion SQL Server**, au choix :
+   - **Utiliser une instance SQL Server existante** (Express ou complète, locale ou distante) ;
+   - **Fichier Access local** — `POINTAGE.mdb` est créé dans le dossier racine de l'installation, aucun serveur SQL n'est nécessaire.
+2. **Méthode de connexion SQL Server**, au choix (étapes ignorées en mode fichier Access) :
    - **Utilisateur Windows actuel** (authentification intégrée) — recommandé en local, aucun mot de passe à saisir ; l'installateur provisionne aussi un login Windows pour l'utilisateur qui l'exécute ;
    - **Identifiants SQL** (utilisateur + mot de passe).
 3. **Création automatique de la base** si absente (droits SQL suffisants, ou compte administrateur Windows — repli automatique sur l'authentification intégrée).
 4. Écrit `KIGest.json` (connexion) à côté de l'exécutable, chiffrée DPAPI au premier démarrage — **aucun mot de passe en clair sur disque**.
 5. En cas de problème de connexion après une mise à jour, utilisez « **Réparer la connexion KI-GEST** » (Menu Démarrer → KI-GEST Pointage) : crée le login Windows de l'opérateur (db_owner sur POINTAGE) et bascule la configuration en authentification Windows intégrée.
 
-Au premier démarrage, l'application applique ses **migrations EF Core** : création automatique des tables sur une base neuve, ou **inscription comme déjà appliquée de la migration initiale** sur une base existante (aucune recréation ni modification de schéma), puis insertion des paramètres, d'une société **« Ma Société »** (renommable depuis la page Sociétés) et du compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »). Les évolutions de schéma futures sont ainsi appliquées automatiquement au démarrage, sans script SQL manuel.
+Au premier démarrage, l'application applique ses **migrations EF Core** : création automatique des tables sur une base neuve, ou **inscription comme déjà appliquée de la migration initiale** sur une base existante (aucune recréation ni modification de schéma), puis insertion des paramètres, d'une société **« Ma Société »** (renommable depuis la page Sociétés) et du compte **`admin` / `admin`** — **changez ce mot de passe immédiatement** (bouton « Changer MDP »). Les évolutions de schéma futures sont ainsi appliquées automatiquement au démarrage, sans script SQL manuel. En mode **fichier Access**, le schéma (19 tables) est créé par `EnsureCreated` au premier démarrage.
 
 ## Compatibilité ZKTeco
 
@@ -78,7 +79,12 @@ Pointeuses ZKTeco fonctionnant avec le SDK `zkemkeeper.dll` (famille SpeedFace, 
 
 ## Configuration
 
-Le fichier `KIGest.json` (à côté de `KIGest.App.exe`) contient la connexion SQL — prioritaire sur toute autre configuration. Le choix du mode se fait **dans l'installateur** (assistant « Méthode de connexion SQL ») et se modifie ensuite dans l'application : **Paramètres → Base** (serveur, base, Windows intégré ou compte SQL, bouton « Tester la connexion »). Le mot de passe est chiffré DPAPI dans `KIGest.json`. Plus aucun raccourci dédié n'est nécessaire.
+Le fichier `KIGest.json` (à côté de `KIGest.App.exe`) contient la connexion — prioritaire sur toute autre configuration. Le choix du backend se fait **dans l'installateur** (SQL Server Express / instance existante / fichier Access local) et se modifie ensuite dans l'application : **Paramètres → Base** :
+
+- **SQL Server — Windows intégré** (recommandé) ou **compte SQL** : serveur, base, utilisateur, mot de passe, bouton « Tester la connexion » ;
+- **Fichier Access local** : chemin de `POINTAGE.mdb`, créé automatiquement s'il n'existe pas dans le dossier d'installation.
+
+Le mot de passe SQL est chiffré DPAPI dans `KIGest.json`. Plus aucun raccourci dédié n'est nécessaire. Le pilote ODBC Microsoft Access **32 bits** est requis pour le mode fichier (fourni avec Office/Access Database Engine).
 
 Depuis la **v1.8.7**, si les identifiants SQL ne fonctionnent plus (mot de passe changé, compte verrouillé), l'application réessaie automatiquement avec l'**authentification Windows intégrée** sur le même serveur et la même base, sans réécrire `KIGest.json` : les deux modes restent disponibles.
 
@@ -97,9 +103,9 @@ Exemple :
 - **Mots de passe** : hachage PBKDF2-HMAC-SHA256 (100 000 itérations, sel aléatoire).
 - **Premier démarrage** : le mot de passe par défaut `admin` doit être changé **obligatoirement** avant tout autre écran — l'application ne laisse pas accéder le tableau de bord tant qu'il est en place.
 - **Verrouillage du compte** après 5 échecs de connexion (15 minutes, paramétrable), journalisé.
-- **Chaîne SQL & secrets SMTP** : chiffrés DPAPI (machine locale), jamais en clair sur disque après le premier démarrage.
+- **Chaîne SQL & secrets SMTP** : chiffrés DPAPI (machine locale), jamais en clair sur disque après le premier démarrage. Le chemin du fichier Access est également stocké chiffré.
 - **CIN (données personnelles)** : chiffrées DPAPI au repos dans la base (colonne `Employes.CIN`), jamais affichées en clair — seul l'admin peut les voir.
-- **Sauvegardes** (`.bak`) : stockées dans un dossier protégé — lecture restreinte, écriture réservée au compte SQL Server.
+- **Sauvegardes** (`.bak`) : `BACKUP DATABASE` côté SQL Server ; copie du fichier `.mdb` côté Access (le fichier est accessible en écriture aux utilisateurs via une ACL positionnée par l'installateur).
 - **Traçabilité** : journal des connexions, échecs, changements de mot de passe et actions sensibles.
 
 ## Support
