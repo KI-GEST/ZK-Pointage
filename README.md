@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.9.0-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.9.1-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server / Access](https://img.shields.io/badge/SQL%20Server%20%2F%20Access-A80000)](https://www.microsoft.com/sql-server)
@@ -105,7 +105,7 @@ Exemple :
 - **Verrouillage du compte** après 5 échecs de connexion (15 minutes, paramétrable), journalisé.
 - **Chaîne SQL & secrets SMTP** : chiffrés DPAPI (machine locale), jamais en clair sur disque après le premier démarrage. Le chemin du fichier Access est également stocké chiffré.
 - **CIN (données personnelles)** : chiffrées DPAPI au repos dans la base (colonne `Employes.CIN`), jamais affichées en clair — seul l'admin peut les voir.
-- **Sauvegardes** (`.bak`) : `BACKUP DATABASE` côté SQL Server ; copie du fichier `.mdb` côté Access (le fichier est accessible en écriture aux utilisateurs via une ACL positionnée par l'installateur).
+- **Sauvegardes** (`.bak`) : `BACKUP DATABASE` côté SQL Server ; copie du fichier `.mdb` côté Access. L'installateur accorde l'écriture aux utilisateurs sur le fichier **et sur son dossier** (Jet doit pouvoir créer `POINTAGE.ldb` à côté de la base).
 - **Traçabilité** : journal des connexions, échecs, changements de mot de passe et actions sensibles.
 
 ## Support
