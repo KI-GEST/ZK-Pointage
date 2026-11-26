@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.9.1-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.9.2-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server / Access](https://img.shields.io/badge/SQL%20Server%20%2F%20Access-A80000)](https://www.microsoft.com/sql-server)
@@ -85,6 +85,8 @@ Le fichier `KIGest.json` (à côté de `KIGest.App.exe`) contient la connexion �
 - **Fichier Access local** : chemin de `POINTAGE.mdb`, créé automatiquement s'il n'existe pas dans le dossier d'installation.
 
 Le mot de passe SQL est chiffré DPAPI dans `KIGest.json`. Plus aucun raccourci dédié n'est nécessaire. Le pilote ODBC Microsoft Access **32 bits** est requis pour le mode fichier (fourni avec Office/Access Database Engine).
+
+Depuis la **v1.9.2**, l'installateur accorde aux utilisateurs standards l'écriture sur `KIGest.json` (en plus du dossier et de `POINTAGE.mdb`), afin que le changement SQL ↔ Access depuis **Paramètres → Base** fonctionne sans élévation. Sur une installation 1.9.0/1.9.1, exécutez `Reparer-Access.ps1` en administrateur (fourni dans la release 1.9.1/1.9.2). Redémarrez l'application après le changement de backend.
 
 Depuis la **v1.8.7**, si les identifiants SQL ne fonctionnent plus (mot de passe changé, compte verrouillé), l'application réessaie automatiquement avec l'**authentification Windows intégrée** sur le même serveur et la même base, sans réécrire `KIGest.json` : les deux modes restent disponibles.
 
