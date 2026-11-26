@@ -1,6 +1,6 @@
 ﻿# ZK Pointage — KI-GEST
 
-[![Version](https://img.shields.io/badge/version-1.8.6-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
+[![Version](https://img.shields.io/badge/version-1.8.7-FF4055)](https://github.com/KI-GEST/ZK-Pointage/releases)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
 [![Licence](https://img.shields.io/badge/license-Propriétaire-gray)](#licence)
 [![SQL Server](https://img.shields.io/badge/SQL-Server-A80000)](https://www.microsoft.com/sql-server)
@@ -78,7 +78,7 @@ Pointeuses ZKTeco fonctionnant avec le SDK `zkemkeeper.dll` (famille SpeedFace, 
 
 ## Configuration
 
-Le fichier `KIGest.json` (à côté de `KIGest.App.exe`) contient la connexion SQL — prioritaire sur toute autre configuration. Modifiable après installation, l'application se reconnecte au redémarrage.
+Le fichier `KIGest.json` (à côté de `KIGest.App.exe`) contient la connexion SQL — prioritaire sur toute autre configuration. Modifiable après installation, l'application se reconnecte au redémarrage. Depuis la **v1.8.7**, si les identifiants SQL ne fonctionnent plus (mot de passe changé, compte verrouillé), l'application réessaie automatiquement avec l'**authentification Windows intégrée** sur le même serveur et la même base, sans réécrire `KIGest.json` : les deux modes restent disponibles.
 
 Exemple :
 
